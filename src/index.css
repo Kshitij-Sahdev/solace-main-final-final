@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-cyber-black text-white font-sans;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-cyber-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-cyber-gray rounded-full;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-neon-purple bg-opacity-50;
+}
+
+/* Custom cursor */
+.custom-cursor {
+  @apply fixed w-6 h-6 rounded-full pointer-events-none z-50 mix-blend-screen;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+/* Glassmorphism */
+.glass {
+  @apply bg-cyber-dark bg-opacity-70 backdrop-blur-md border border-cyber-gray border-opacity-30;
+}
+
+.glass-card {
+  @apply glass rounded-lg shadow-lg;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Neon effects */
+.neon-text-blue {
+  @apply text-neon-blue;
+  text-shadow: 0 0 5px #00f3ff, 0 0 10px #00f3ff;
+}
+
+.neon-text-pink {
+  @apply text-neon-pink;
+  text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+}
+
+.neon-text-purple {
+  @apply text-neon-purple;
+  text-shadow: 0 0 5px #b026ff, 0 0 10px #b026ff;
+}
+
+.neon-text-green {
+  @apply text-neon-green;
+  text-shadow: 0 0 5px #0fff50, 0 0 10px #0fff50;
+}
+
+.neon-border {
+  @apply relative rounded-lg overflow-hidden;
+}
+
+.neon-border::before {
+  content: '';
+  @apply absolute inset-0 rounded-lg;
+  padding: 2px;
+  background: linear-gradient(45deg, #00f3ff, #ff00ff, #b026ff, #0fff50);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: border-rotate 4s linear infinite;
+}
+
+@keyframes border-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 130% 50%;
+  }
+}
+
+/* Animations */
+.glitch {
+  animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-5px, 5px); }
+  40% { transform: translate(-5px, -5px); }
+  60% { transform: translate(5px, 5px); }
+  80% { transform: translate(5px, -5px); }
+}
+
+/* Netflix-style carousel */
+.netflix-row {
+  @apply flex overflow-x-auto py-4 snap-x snap-mandatory;
+  scrollbar-width: none;
+}
+
+.netflix-row::-webkit-scrollbar {
+  display: none;
+}
+
+.netflix-card {
+  @apply snap-start flex-shrink-0 w-64 h-36 mx-2 rounded-md overflow-hidden transition-all duration-300 transform;
+}
+
+.netflix-card:hover {
+  @apply scale-105 z-10;
+}
+
+/* 3D Tilt Cards */
+.tilt-card {
+  @apply glass-card transition-all duration-300;
+  transform-style: preserve-3d;
+}
+
+.tilt-card-content {
+  transform: translateZ(20px);
+}
+
+/* Masonry Grid */
+.masonry-grid {
+  @apply grid gap-4;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* Form Inputs */
+.cyber-input {
+  @apply bg-cyber-gray border-2 border-cyber-light rounded-md px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-neon-blue transition-all duration-300;
+}
+
+.cyber-input:focus {
+  @apply border-neon-blue;
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.cyber-button {
+  @apply bg-cyber-gray px-6 py-3 rounded-md font-cyber uppercase tracking-wider transition-all duration-300 relative overflow-hidden;
+}
+
+.cyber-button::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-neon-blue to-neon-purple opacity-0 transition-opacity duration-300;
+}
+
+.cyber-button:hover::before {
+  @apply opacity-30;
+}
+
+.cyber-button:active {
+  transform: translateY(2px);
+}
+
+/* Loading Skeletons */
+.skeleton {
+  @apply bg-cyber-gray animate-pulse rounded;
+}
+
+/* Page Transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
